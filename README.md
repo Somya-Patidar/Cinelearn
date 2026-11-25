@@ -294,20 +294,8 @@ Executed with the internal Phase 3 pilot harness (`evaluation/run_pilot_experime
 | Render Completed (Section 1) | 4 / 4 (100%) | 1 / 4 (25%) *(2 halted fail-closed on duration budget overrun)* |
 | Collision-Free Layout (`OVL = 0`) | **0 / 4 (0%)** | **1 / 1 (100% of rendered)** |
 
-### 2. Phase 3F Targeted Modern Verification (`N = 3`, Full Multi-Section Lessons)
 
-Following prompt, duration-budget, and Gate 3.5 operation-repair fixes, one Modern Scene IR attempt per benchmark topic was executed (`temperature=0.2`):
-
-| Run ID | Topic | Rendered Sections | Master Duration | Decode Valid | Content Preserved | Algorithmic Milestones | Logged Solver Overflows / Overlaps |
-|---|---|---:|---:|:---:|:---:|:---:|:---:|
-| `FINAL-MOD-BS-01` | Binary Search | 3 / 3 | 93.0s | Pass | Pass | **Pass (5/5)** | 0 / 0 |
-| `FINAL-MOD-FCFS-01` | FCFS Scheduling | 3 / 3 | 113.0s | Pass | Pass | **Pass (5/5)** | 0 / 0* |
-| `FINAL-MOD-SJF-01` | SJF Scheduling | 7 / 7 | 77.0s | Pass | Pass | 3 / 5** | 0 / 0 |
-
-*\*Visual frame inspection of `FINAL-MOD-FCFS-01_master.mp4` shows that while automated solver counters reported `0 / 0`, Section 3 (`Performance Metrics`) still exhibits horizontal overlap between the metrics table and the Gantt chart title/timeline, alongside unpopulated metric cells (`-`).*  
-*\*\*In `FINAL-MOD-SJF-01`, dispatch intervals, CT, TAT, WT, and averages were mathematically accurate, while the strict milestone oracle marked Milestones 3–4 false because narration omitted explicit "tie" / "earlier arrival" phrasing at $t=8$.*
-
-### 3. Final Comparative Matrix (Internal Evaluation Harness)
+### 2. Final Comparative Matrix (Internal Evaluation Harness)
 
 A 12-attempt comparative matrix (3 topics × 2 pipelines × 2 attempts) was executed via the internal comparative runner (`evaluation/final_comparison/run_final_comparison.py`, omitted from the initial public code release):
 - **Legacy runs:** `LEGACY-BS-01`, `LEGACY-FCFS-02`, and `LEGACY-SJF-01` completed rendering (`48.8s`, `134.8s`, `84.4s`), all with `algorithmic_correctness = False`; `LEGACY-BS-01`, `LEGACY-FCFS-01`, `LEGACY-FCFS-02`, and `LEGACY-SJF-01` exhibited visual overlap defects. Three legacy attempts failed to render all sections (`LEGACY-BS-02`, `LEGACY-FCFS-01`, `LEGACY-SJF-02`).
