@@ -1,0 +1,40 @@
+{
+  "default": {
+    "provider": "gemini",
+    "model": "gemini-3.8-flash",
+    "temperature": 0.7,
+    "timeout": 120.0
+  },
+  "stages": {
+    "outline": {
+      "provider": "gemini",
+      "model": "gemini-3.8-flash",
+      "temperature": 0.7
+    },
+    "storyboard": {
+      "provider": "ollama",
+      "model": "qwen2.5-coder:32b",
+      "temperature": 0.7
+    },
+    "code_generation": {
+      "provider": "ollama",
+      "model": "qwen2.5-coder:32b",
+      "temperature": 0.2
+    },
+    "verification": {
+      "provider": "gemini",
+      "model": "gemini-3.8-flash",
+      "temperature": 0.2
+    },
+    "repair": {
+      "provider": "ollama",
+      "model": "qwen2.5-coder:32b",
+      "temperature": 0.2
+    },
+    "evaluation": {
+      "provider": "gemini",
+      "model": "gemini-3.8-flash",
+      "temperature": 0.2
+    }
+  }
+}

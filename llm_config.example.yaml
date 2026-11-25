@@ -1,0 +1,52 @@
+# ============================================================================
+# CineLearn Stage-to-Model Configuration
+# ============================================================================
+# Copy this file to llm_config.yaml to override providers and models per stage.
+# Priority:
+#   1. Explicit stage environment variable (e.g. STAGE_OUTLINE_MODEL)
+#   2. This stage-to-model configuration file (llm_config.yaml)
+#   3. Global environment variable (.env: LLM_PROVIDER, LLM_MODEL)
+#   4. Built-in defaults
+
+default:
+  provider: gemini
+  model: gemini-3.8-flash
+  temperature: 0.7
+  timeout: 120.0
+
+stages:
+  # Stage 1: Curriculum Outline Generation
+  outline:
+    provider: gemini
+    model: gemini-3.8-flash
+    temperature: 0.7
+
+  # Stage 2: Storyboard & Narrative Development
+  storyboard:
+    provider: ollama
+    model: qwen2.5-coder:32b
+    temperature: 0.7
+
+  # Stage 3: Manim Python Code Generation
+  code_generation:
+    provider: ollama
+    model: qwen2.5-coder:32b
+    temperature: 0.2
+
+  # Stage 4: Visual Layout Feedback / Verification (Requires multimodal video support)
+  verification:
+    provider: gemini
+    model: gemini-3.8-flash
+    temperature: 0.2
+
+  # Manim Code Error Repair (ScopeRefine)
+  repair:
+    provider: ollama
+    model: qwen2.5-coder:32b
+    temperature: 0.2
+
+  # Educational Quality Evaluation (MCQ & Aesthetic)
+  evaluation:
+    provider: gemini
+    model: gemini-3.8-flash
+    temperature: 0.2
